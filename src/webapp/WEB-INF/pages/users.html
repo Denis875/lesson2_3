@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+</head>
+<body>
+<div>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>№</th>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Возраст</th>
+            <th>Действие пользователя</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${userStat.index}+1"></td>
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getName()}"></td>
+            <td th:text="${user.getSurname()}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td>
+                <form th:action="@{/editUser(id=${user.getId()})}" method="post">
+                    <button type="submit">Редактировать</button>
+                </form>
+                <form th:action="@{/deleteUser(id=${user.getId()})}" method="post">
+                    <button type="submit">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/}">
+        <button>Вернуться на стартовую страницу</button>
+    </a>
+    <a th:href="@{/addUser}">
+        <button>Создать нового пользователя</button>
+    </a>
+</div>
+</body>
+</html>
